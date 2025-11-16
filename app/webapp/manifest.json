@@ -76,6 +76,7 @@
           "operationMode":"Server",
           "autoExpandSelect": true,
           "earlyRequests": true,
+          "updateGroupId":"update",
           "groupId":"$auto",
           "httpHeaders":{
             "x-My-cutsom-header":"mycustvalue"

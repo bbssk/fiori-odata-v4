@@ -57,9 +57,16 @@ sap.ui.define(
 
       onPressCreate: function () {
         UIComponent.getRouterFor(this).navTo("create");
+        //create possible through context or list bindings
+        //this.getView().byId("table").getBinding("items").create({});
       },
 
-      onPressDelete: function (oEvent) {},
+      onPressDelete: function (oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oModel = this.getView().getModel();
+        oItem.getBindingContext().delete();
+        oModel.submitBatch(oModel.getUpdateGroupId());
+      },
 
       onPressShowMostExpensiveTrips: function() {
         if (!this._oDialog) {
