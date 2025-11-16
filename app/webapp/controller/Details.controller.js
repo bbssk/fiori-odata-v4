@@ -30,9 +30,10 @@ sap.ui.define(
 
         this.getView().bindElement({
           path: "/People(" + sUserID + ")",
-          parameters: {
-            $expand: "status,address,emails,trips",
-          },
+          //parameters commented due to autoExpandSelect true
+          // parameters: {
+          //   $expand: "status,address,emails,trips",
+          // },
         });
       },
     });

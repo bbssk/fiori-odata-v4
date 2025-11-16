@@ -127,6 +127,9 @@
                   <Column>
                     <Text text="{i18n>price}" />
                   </Column>
+                  <Column>
+                    <Text text="Curr Code" />
+                  </Column>
                 </columns>
                 <items>
                   <ColumnListItem>

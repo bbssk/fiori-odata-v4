@@ -36,6 +36,8 @@
                         text="{i18n>regular}"
                         key="regular" />
                 </items>
+                <!-- items="{path: '/People',parameters: {$expand: 'status,emails'}}"
+                below table auto expand is removed to check autoExpandSelect n manifest -->
                 <content>
                     <Table
                         id="table"
@@ -45,10 +47,7 @@
                         growing="true"
                         growingThreshold="12"
                         items="{
-                            path: '/People',
-                            parameters: {
-                                $expand: 'status,emails'
-                            }
+                            path: '/People'
                         }">
 
                         <headerToolbar>

@@ -72,7 +72,19 @@
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
-				"settings": {}
+				"settings": {
+          "operationMode":"Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId":"$auto",
+          "httpHeaders":{
+            "x-My-cutsom-header":"mycustvalue"
+          },
+          "groupProperties":{
+            "fastGroup":{"submit":"Auto"},
+            "slowGroup":{"submit":"Auto"}
+          }
+        }
 			}
     },
     "resources": {
