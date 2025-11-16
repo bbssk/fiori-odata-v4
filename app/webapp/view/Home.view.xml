@@ -37,9 +37,11 @@
                         key="regular" />
                 </items>
                 <!-- items="{path: '/People',parameters: {$expand: 'status,emails'}}"
-                below table auto expand is removed to check autoExpandSelect n manifest -->
+                added andautoExpandSelect is disabled to check neted query 
+                Note: personal and work email can bee seen with filter query only
+                commented code below will work only for  autoExpandSelect=false-->
                 <content>
-                    <Table
+                    <!-- <Table
                         id="table"
                         width="auto"
                         mode="Delete"
@@ -47,8 +49,33 @@
                         growing="true"
                         growingThreshold="12"
                         items="{
-                            path: '/People'
-                        }">
+                            path: '/People',
+                            parameters: {
+                                $select: ['userName', 'firstName', 'lastName', 'age', 'gender'],
+                                $expand: {
+                                    'status': {
+                                        $select: ['code', 'name']
+                                    },
+                                    'emails': {
+                                        $expand: {
+                                            'type': {
+                                                $select: ['code', 'name']
+                                            }
+                                        },
+                                        $filter: 'type_code ne \'W\''
+                                    }
+                                }
+                            }   
+                        }"> -->
+                    <Table
+                        id="table"
+                        width="auto"
+                        mode="Delete"
+                        delete=".onPressDelete"
+                        growing="true"
+                        growingThreshold="12"
+                        items="{path: '/People'}"
+                        >
 
                         <headerToolbar>
                             <Toolbar>
@@ -95,12 +122,22 @@
                                     <ObjectStatus
                                         text="{status/name}"
                                         state="{ path: 'status/code', formatter: '.formatter.formatUserStatusState' }" />
-                                    <VBox
+                                    <!-- <VBox
                                         items="{
                                             path: 'emails',
                                             templateShareable: false
                                         }">
                                         <Text class="sapUiTinyMarginBottom" text="{address}" />
+                                    </VBox> -->
+                                    <VBox
+                                        items="{
+                                            path: 'emails',
+                                            parameters: {
+                                                $filter: 'type_code ne \'W\''
+                                            },
+                                            templateShareable: false
+                                        }">
+                                        <Text class="sapUiTinyMarginBottom" text="{address} ({type/name})" />
                                     </VBox>
                                 </cells>
                             </ColumnListItem>

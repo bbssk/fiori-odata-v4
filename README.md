@@ -27,3 +27,6 @@ Learn more at https://cap.cloud.sap/docs/get-started/.
 # more info on v4 settings
 https://www.youtube.com/watch?v=UdQu-jlXhIc&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=53
 https://blog.sap-press.com/odata-models-for-sapui5
+
+# step 2
+https://www.youtube.com/watch?v=EE3RZwcph9s&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=53
