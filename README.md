@@ -30,3 +30,8 @@ https://blog.sap-press.com/odata-models-for-sapui5
 
 # step 2
 https://www.youtube.com/watch?v=EE3RZwcph9s&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=53
+
+# step 3
+https://www.youtube.com/watch?v=HqoeOtgs7X8&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=54
+any, all are lambda operations
+https://port4004-workspaces-ws-192t5.us10.trial.applicationstudio.cloud.sap/odata/v4/trippin/People?$expand=trips&$filter=trips/any(trip:trip/budget%20ge%202000)

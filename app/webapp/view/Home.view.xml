@@ -24,16 +24,25 @@
                     <IconTabFilter
                         showAll="true"
                         text="{i18n>allUsers}"
+                        count="{/People/$count}"
                         key="all" />
                     <IconTabSeparator />
                     <IconTabFilter
                         icon="sap-icon://message-success"
                         iconColor="Positive"
+                        count="{
+                            path: '/People/$count?$filter=trips/any(trip:trip/budget%20ge%202000)',
+                            targetType: 'any'    
+                        }"
                         text="{i18n>vip}"
                         key="vip" />
                     <IconTabFilter
                         icon="sap-icon://person-placeholder"
                         text="{i18n>regular}"
+                        count="{
+                            path: '/People/$count?$filter=trips/all(trip:trip/budget%20lt%202000)',
+                            targetType: 'any'    
+                        }"
                         key="regular" />
                 </items>
                 <!-- items="{path: '/People',parameters: {$expand: 'status,emails'}}"
@@ -74,7 +83,12 @@
                         delete=".onPressDelete"
                         growing="true"
                         growingThreshold="12"
-                        items="{path: '/People'}"
+                        items="{
+                            path: '/People',
+                            parameters: {
+                                $count: true
+                            }
+                        }"
                         >
 
                         <headerToolbar>

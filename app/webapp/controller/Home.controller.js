@@ -16,15 +16,33 @@ sap.ui.define(
       onInit: function () {},
 
       onSelectFilter: function (oEvent) {
+        var oTableBinding = this.getView().byId("table").getBinding("items");
         var sSelectedKey = oEvent.getParameter("key");
 
         switch (sSelectedKey) {
           case "all":
           default:
+            oTableBinding.filter([]);
             break;
           case "vip":
+            oTableBinding.filter([
+              new Filter({
+                path: "trips",
+                operator: Operator.Any,
+                variable: "trip",
+                condition: new Filter("trip/budget", Operator.GE, 2000)
+              })
+            ]);
             break;
           case "regular":
+            oTableBinding.filter([
+              new Filter({
+                path: "trips",
+                operator: Operator.All,
+                variable: "trip",
+                condition: new Filter("trip/budget", Operator.LT, 2000)
+              })
+            ]);
             break;
         }
       },
