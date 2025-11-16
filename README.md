@@ -40,3 +40,8 @@ https://port4004-workspaces-ws-192t5.us10.trial.applicationstudio.cloud.sap/odat
 https://www.youtube.com/watch?v=NcOpWjuIH6k&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=55
 
 https://sapui5.hana.ondemand.com/#/api/sap.ui.model.odata.v4.ODataModel%23methods/bindList:~:text=The%20group%20ID%20to%20be%20used%20for%20update%20requests%20initiated%20by%20this%20binding%3B%20if%20not%20specified%2C%20either%20the%20parent%20binding%27s%20update%20group%20ID%20(if%20the%20binding%20is%20relative)%20or%20the%20model%27s%20update%20group%20ID%20is%20used%2C%20see%20%23constructor.%20For%20valid%20values%2C%20see%20parameter%20%22%24%24groupId%22.
+
+# step 5
+https://www.youtube.com/watch?v=3sLJP3CQ0g4&list=PLP_7HQeZf7LKjQU-aEvJLeg6xsWiiuX-j&index=56
+
+binding="{/getMostExpensiveTrips(...)} where ---->  ... refres to deferred invocation

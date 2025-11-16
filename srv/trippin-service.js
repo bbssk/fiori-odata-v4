@@ -35,7 +35,7 @@ module.exports = cds.service.impl(async function () {
 
     // Find the person
     const person = await cds.run(
-      SELECT.one.from(People).where({ ID })
+      SELECT.one.from(People).where({ ID: ID.ID })
     );
 
     if (!person) {
@@ -44,9 +44,9 @@ module.exports = cds.service.impl(async function () {
 
     // Update the status to 'S' (Suspended)
     await cds.run(
-      UPDATE(People).set({ status_code: "S" }).where({ ID })
+      UPDATE(People).set({ status_code: "S" }).where({ ID: person.ID })
     );
 
-    return `Person with ID ${ID} has been suspended.`;
+    return `Person with ID ${person.ID} has been suspended.`;
   });
 });

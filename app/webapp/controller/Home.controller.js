@@ -88,7 +88,18 @@ sap.ui.define(
         this._oDialog.close();
       },
 
-      onPressShowTrips: function() {}
+      onPressShowTrips: function() {
+        //count handling from controller
+        // var iCount = this.getView().byId("idCountInput").getValue();
+        // if (iCount) {
+        //   this.getView().byId("idDialog").getObjectBinding().setParameter("count", iCount).invoke();
+        // }else{
+        //   this.getView().byId("idDialog").getObjectBinding().invoke();
+        // }
+        
+        //handler for count from XML
+        this.getView().byId("idDialog").getObjectBinding().invoke();
+      }
     });
   }
 );
