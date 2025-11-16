@@ -16,15 +16,33 @@ sap.ui.define(
       onInit: function () {},
 
       onSelectFilter: function (oEvent) {
+        var oTableBinding = this.getView().byId("table").getBinding("items");
         var sSelectedKey = oEvent.getParameter("key");
 
         switch (sSelectedKey) {
           case "all":
           default:
+            oTableBinding.filter([]);
             break;
           case "vip":
+            oTableBinding.filter([
+              new Filter({
+                path: "trips",
+                operator: Operator.Any,
+                variable: "trip",
+                condition: new Filter("trip/budget", Operator.GE, 2000)
+              })
+            ]);
             break;
           case "regular":
+            oTableBinding.filter([
+              new Filter({
+                path: "trips",
+                operator: Operator.All,
+                variable: "trip",
+                condition: new Filter("trip/budget", Operator.LT, 2000)
+              })
+            ]);
             break;
         }
       },
@@ -39,9 +57,16 @@ sap.ui.define(
 
       onPressCreate: function () {
         UIComponent.getRouterFor(this).navTo("create");
+        //create possible through context or list bindings
+        //this.getView().byId("table").getBinding("items").create({});
       },
 
-      onPressDelete: function (oEvent) {},
+      onPressDelete: function (oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oModel = this.getView().getModel();
+        oItem.getBindingContext().delete();
+        oModel.submitBatch(oModel.getUpdateGroupId());
+      },
 
       onPressShowMostExpensiveTrips: function() {
         if (!this._oDialog) {
@@ -63,7 +88,18 @@ sap.ui.define(
         this._oDialog.close();
       },
 
-      onPressShowTrips: function() {}
+      onPressShowTrips: function() {
+        //count handling from controller
+        // var iCount = this.getView().byId("idCountInput").getValue();
+        // if (iCount) {
+        //   this.getView().byId("idDialog").getObjectBinding().setParameter("count", iCount).invoke();
+        // }else{
+        //   this.getView().byId("idDialog").getObjectBinding().invoke();
+        // }
+        
+        //handler for count from XML
+        this.getView().byId("idDialog").getObjectBinding().invoke();
+      }
     });
   }
 );

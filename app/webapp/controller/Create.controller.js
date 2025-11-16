@@ -10,17 +10,54 @@ sap.ui.define(
           .attachPatternMatched(this._onCreateMatched, this);
       },
 
-      onPressAddTrip: function () {},
+      onPressAddTrip: function () {
+        this.getView().byId("idTripsTable").getBinding("items").create({}, false, true, false);
+      },
 
-      onRemoveTrip: function (oEvent) {},
+      onRemoveTrip: function (oEvent) {
+        var oItem = oEvent.getParameter("listItem");
 
-      onPressSave: function () {},
+        oItem.getBindingContext().delete();
+      },
+
+      onPressSave: function () {
+
+        //component.js onMessageBindingChange should be debugged to understand
+        var oModel = this.getView().getModel();
+
+        oModel.submitBatch(oModel.getUpdateGroupId()).then(function() {
+          if (!this.getOwnerComponent().bError) {
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            MessageToast.show(oBundle.getText("userCreated"), {
+              closeOnBrowserNavigation: false
+            });
+
+            UIComponent.getRouterFor(this).navTo("details", {
+              userID: this.getView().getBindingContext().getProperty("ID")
+            }, true);
+          }
+        }.bind(this));
+      },
 
       onPressCancel: function () {
         UIComponent.getRouterFor(this).navTo("home", {}, true);
       },
 
-      _onCreateMatched: function () {},
+      _onCreateMatched: function () {
+        //create possible through context or list bindings
+
+        // var oListBinding = this.getView().getModel().bindList("/People", null, [], [], {
+        //   $$updateGroupId: "update"
+        // });
+
+        
+        var oListBinding = this.getView().getModel().bindList("/People");
+
+        var oContext = oListBinding.create({}, false, false, true);
+
+        this.getView().setBindingContext(oContext);
+      },
     });
   }
 );
